@@ -1,48 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>Tawk Monitor</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100%;
-    }
-  </style>
 </head>
-<body>
-  <script type="text/javascript">
-    var Tawk_API = Tawk_API || {};
+<body style="margin:0; padding:0; overflow:hidden;">
+<script type="text/javascript">
+  var Tawk_API = Tawk_API || {};
 
-    Tawk_API.onChatStarted = function () {
-      console.log("📩 Tawk: Chat started");
-      try {
-        parent.postMessage("new_chat", "*");
-      } catch (e) {
-        console.warn("⚠️ postMessage failed", e);
-      }
-    };
+  Tawk_API.onChatStarted = function () {
+    window.parent.postMessage("new_chat", "*");
+  };
+  Tawk_API.onMessageReceived = function () {
+    window.parent.postMessage("new_message", "*");
+  };
 
-    Tawk_API.onMessageReceived = function () {
-      console.log("📩 Tawk: Message received");
-      try {
-        parent.postMessage("new_message", "*");
-      } catch (e) {
-        console.warn("⚠️ postMessage failed", e);
-      }
-    };
-
-    (function () {
-      var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/6856aee6acb5e2190d74dff2/1iu99mdjf';
-      s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
-    })();
-  </script>
+  var s1 = document.createElement("script"),
+      s0 = document.getElementsByTagName("script")[0];
+  s1.async = true;
+  s1.src = 'https://embed.tawk.to/6856aee6acb5e2190d74dff2/1iu99mdjf?widget=false';  // ✅ disable native icon
+  s1.charset = 'UTF-8';
+  s1.setAttribute('crossorigin', '*');
+  s0.parentNode.insertBefore(s1, s0);
+</script>
 </body>
 </html>
