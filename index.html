@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Monitor</title>
+</head>
+<body style="margin:0; padding:0; overflow:hidden;">
+<script type="text/javascript">
+  var Tawk_API = Tawk_API || {};
+  Tawk_API.onChatStarted = function () {
+    MessageAlert.postMessage("new_chat");
+  };
+  Tawk_API.onMessageReceived = function () {
+    MessageAlert.postMessage("new_message");
+  };
+  (function () {
+    var s1 = document.createElement("script"),
+        s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/6856aee6acb5e2190d74dff2/1iu99mdjf';
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin', '*');
+    s0.parentNode.insertBefore(s1, s0);
+  })();
+</script>
+</body>
+</html>
